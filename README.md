@@ -1,3 +1,3 @@
 ## GPX analyzer
 
-### TODO: update index.tsx
+### TODO: refactor, especially index.tsx

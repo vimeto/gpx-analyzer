@@ -1,7 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { Point } from 'gpxparser';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
-import { checkIntersection } from 'line-intersect';
 import { colors } from '@/colors';
 
 const turn = (p1: Point, p2: Point, p3: Point) => {
@@ -89,7 +88,7 @@ const handler: NextApiHandler = async (req, res) => {
           time: segmentTime,
           color: colors[j % colors.length],
           id: j,
-          points: points.slice(previousIntersectionIndex, i - 1),
+          points: points.slice(previousIntersectionIndex, i + 1),
         };
         segments.push(segment);
 
