@@ -1,4 +1,8 @@
 FROM node:18 AS runner
+
+ARG MapboxAccessTokenDev
+ENV MapboxAccessTokenDev $MapboxAccessTokenDev
+
 WORKDIR /app
 
 COPY . .

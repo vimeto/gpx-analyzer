@@ -1,0 +1,16 @@
+steps:
+- id: Build
+    name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - '-f=Dockerfile'
+      - '.'
+
+      - '--build-arg'
+      - 'MapboxAccessTokenDev=$$MapboxAccessTokenDev'
+
+    secretEnv: ['MapboxAccessTokenDev']
+availableSecrets:
+  secretManager:
+  - versionName: projects/101525772135/secrets/gpx-analyzer-mapbox-token/versions/1
+    env: 'MapboxAccessTokenDev'
