@@ -51,6 +51,8 @@ export default function Home() {
     setCheckPoints(newCheckPoints);
   }
 
+  useEffect(() => console.log(process.env.MapboxAccessTokenDev));
+
   const postCalculations = async () => {
     const res = await fetch('/api/calculations', {
       method: 'POST',
