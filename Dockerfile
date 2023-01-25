@@ -3,6 +3,8 @@ FROM node:18 AS runner
 ARG MapboxAccessTokenDev
 ENV MapboxAccessTokenDev=$MapboxAccessTokenDev
 
+RUN echo $MapboxAccessTokenDev
+
 WORKDIR /app
 
 COPY . .
