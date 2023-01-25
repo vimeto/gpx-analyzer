@@ -6,7 +6,6 @@ steps:
     - -c
     - |
     docker build -t gcr.io/$PROJECT_ID/gpx-analyzer:$COMMIT_SHA -f=Dockerfile --build-arg MapboxAccessTokenDev=${_MAPBOX_KEY} .
-
   secretEnv: ['_MAPBOX_KEY']
 # push
 - name: 'gcr.io/cloud-builders/docker'
