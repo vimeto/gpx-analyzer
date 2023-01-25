@@ -51,8 +51,6 @@ export default function Home() {
     setCheckPoints(newCheckPoints);
   }
 
-  useEffect(() => console.log(process.env.MapboxAccessTokenDev));
-
   const postCalculations = async () => {
     const res = await fetch('/api/calculations', {
       method: 'POST',
@@ -89,7 +87,6 @@ export default function Home() {
 
     const json = await res.json();
 
-    console.log(json.points);
     setPoints(json.points);
 
     const min = json.min as Point;
@@ -262,8 +259,6 @@ export default function Home() {
           )}
 
           {segments.length == 0 && checkPoints.map((checkPoint, index) => {
-            console.log(checkPoint)
-
             return (
               <Source key={index} id={`checkPoint${index}`} type="geojson" data={{
                 type: "LineString",
