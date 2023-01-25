@@ -126,7 +126,7 @@ export default function Home() {
   return (
     <Box>
       <Head>
-        <title>My page</title>
+        <title>GPX analyzer</title>
       </Head>
       <Box sx={{ pb: 2 }}>
         <Box sx={{ textAlign: 'center', py: 2 }}>
