@@ -1,8 +1,7 @@
 steps:
 # build
 - name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'bash'
-  args: ['-c', 'docker build', '-t', 'gcr.io/$PROJECT_ID/gpx-analyzer:$COMMIT_SHA', '-f=Dockerfile', '--build-arg', 'MapboxAccessTokenDev=${MapboxAccessTokenDev}', '.']
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/gpx-analyzer:$COMMIT_SHA', '-f=Dockerfile', '--build-arg', 'MapboxAccessTokenDev=${MapboxAccessTokenDev}', '.']
   secretEnv: ['MapboxAccessTokenDev']
 # push
 - name: 'gcr.io/cloud-builders/docker'
