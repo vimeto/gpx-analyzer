@@ -1,23 +1,17 @@
 steps:
- # build
- - name: 'gcr.io/cloud-builders/docker'
-   args: ['build', '-t', 'gcr.io/$PROJECT_ID/gpx-analyzer:$COMMIT_SHA', '-f=Dockerfile', '.', '--build-arg', 'MapboxAccessTokenDev=$$MapboxAccessTokenDev']
-   secretEnv: ['MapboxAccessTokenDev']
- # push
- - name: 'gcr.io/cloud-builders/docker'
-   args: ['push', 'gcr.io/$PROJECT_ID/gpx-analyzer:$COMMIT_SHA']
- # Deploy
- - name: 'gcr.io/cloud-builders/gcloud'
-   args:
-   - 'run'
-   - 'deploy'
-   - 'gpx-analyzer'
-   - '--image'
-   - 'gcr.io/$PROJECT_ID/gpx-analyzer:$COMMIT_SHA'
-   - '--region'
-   - 'europe-north1'
- images:
- - 'gcr.io/$PROJECT_ID/gpx-analyzer:$COMMIT_SHA'
+# build
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/gpx-analyzer:$COMMIT_SHA', '-f=Dockerfile', '.', '--build-arg', 'MapboxAccessTokenDev=$$MapboxAccessTokenDev']
+  secretEnv: ['MapboxAccessTokenDev']
+# push
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/gpx-analyzer:$COMMIT_SHA']
+# Deploy
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'gpx-analyzer', '--image', 'gcr.io/$PROJECT_ID/gpx-analyzer:$COMMIT_SHA', '--region', 'europe-north1']
+images:
+- 'gcr.io/$PROJECT_ID/gpx-analyzer:$COMMIT_SHA'
 availableSecrets:
   secretManager:
   - versionName: projects/101525772135/secrets/gpx-analyzer-mapbox-token/versions/1
